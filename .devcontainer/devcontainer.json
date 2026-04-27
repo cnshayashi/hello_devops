@@ -1,0 +1,27 @@
+{
+  "name": "DevOps",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "kejun.markdown-alert",
+        "bierner.github-markdown-preview",
+        "aaron-bond.better-comments",
+        "github.vscode-github-actions"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers-extra/features/actionlint:1": {},
+    "ghcr.io/aquaproj/devcontainer-features/aqua-installer:0.1.4": {
+      "aqua_version": "v2.57.1"
+    }
+  },
+  "remoteUser": "node",
+  "remoteEnv": {
+    "PATH": "/home/node/.local/share/aquaproj-aqua/bin:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "npm install && aqua i -l",
+  "forwardPorts": [5173]
+}

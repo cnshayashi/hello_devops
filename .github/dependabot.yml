@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: # TODO-1
+    directory: "/"
+    schedule:
+      # TODO-2
+    assignees:
+      # TODO-3
