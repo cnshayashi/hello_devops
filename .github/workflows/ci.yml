@@ -1,20 +1,25 @@
 name: CI
 
 on:
-  # TODO-1
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: リポジトリをチェックアウト
-        uses: # TODO-2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Node.js をセットアップ
-        uses: # TODO-3
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "24.15.0"
+          cache: "npm"
 
       - name: 依存パッケージをインストール
-        # TODO-4
+        run: npm ci
 
       - name: テストを実行
-        # TODO-5
+        run: npm test

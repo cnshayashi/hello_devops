@@ -1,8 +1,8 @@
 version: 2
 updates:
-  - package-ecosystem: # TODO-1
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      # TODO-2
+      interval: "daily"
     assignees:
-      # TODO-3
+      - "cnshayashi"

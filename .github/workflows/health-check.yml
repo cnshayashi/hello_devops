@@ -1,11 +1,12 @@
 name: ヘルスチェック
 
 on:
-  # TODO-1
-  # TODO-2
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
 
 env:
-  SITE_URL: # TODO-3
+  SITE_URL: "https://cnshayashi.github.io/hello_devops/"
 
 jobs:
   health-check:
@@ -20,10 +21,10 @@ jobs:
 
           if [ "$STATUS" != "200" ]; then
             echo "::error::Health check failed with status: $STATUS"
-            # TODO-4: 異常時
+            echo "HEALTH_STATUS=failed" >> "${GITHUB_OUTPUT}"
           else
             echo "Health check passed!"
-            # TODO-4: 正常時
+            echo "HEALTH_STATUS=success" >> "${GITHUB_OUTPUT}"
           fi
 
       - name: ヘルスチェック失敗時にワークフローを失敗させる
