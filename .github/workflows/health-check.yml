@@ -28,5 +28,5 @@ jobs:
           fi
 
       - name: ヘルスチェック失敗時にワークフローを失敗させる
-        if: ${{ steps.health_check.outputs.HEALTH_STATUS }} == 'failed'
+        if: ${{ steps.health_check.outputs.HEALTH_STATUS == 'failed' }}
         run: exit 1
