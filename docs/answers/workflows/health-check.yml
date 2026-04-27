@@ -1,0 +1,32 @@
+name: ヘルスチェック
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+env:
+  SITE_URL: "https://cnshayashi.github.io/hello_devops/"
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ヘルスチェックを実行
+        id: health_check
+        run: |
+          echo "Checking: $SITE_URL"
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$SITE_URL")
+          echo "HTTP Status: $STATUS"
+
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::Health check failed with status: $STATUS"
+            echo "HEALTH_STATUS=failed" >> "${GITHUB_OUTPUT}"
+          else
+            echo "Health check passed!"
+            echo "HEALTH_STATUS=success" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: ヘルスチェック失敗時にワークフローを失敗させる
+        if: ${{ steps.health_check.outputs.HEALTH_STATUS }} == 'failed'
+        run: exit 1

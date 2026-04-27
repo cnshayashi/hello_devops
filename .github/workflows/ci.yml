@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  # TODO-1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: # TODO-2
+
+      - name: Node.js をセットアップ
+        uses: # TODO-3
+
+      - name: 依存パッケージをインストール
+        # TODO-4
+
+      - name: テストを実行
+        # TODO-5
